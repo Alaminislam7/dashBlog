@@ -1,9 +1,16 @@
+import type { NextPage } from "next"
+import { signIn, useSession } from "next-auth/react"
 
+const Home: NextPage = () => {
+  const {data} = useSession();
+  console.log("Here is data", data)
 
-export default function Home() {
   return (
     <>
-      <p>hello home page</p>
+      <button onClick={() => signIn("google")}>Sign In</button>
+      <p>{data?.user?.name}</p>
     </>
   )
 }
+
+export default Home;
